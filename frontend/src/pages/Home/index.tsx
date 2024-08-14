@@ -7,8 +7,7 @@ import { StatusContext } from '@/context/StatusContext';
 import { Results } from '@/types/Results';
 import { StatusContextType } from '@/types/Status';
 import Circle from '@/components/Circle';
-import axios from 'axios';
-import appConfig from '../../../config';
+import { getWords } from '@/services/wordsServices';
 
 let wordsData: string[] = [];
 
@@ -19,23 +18,23 @@ export default function Home() {
     charCorrectness: {},
     accuracy: { correct: 0, incorrect: 0 },
     isAfk: false,
-    time: 0
+    time: 0,
   });
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${appConfig.API_URL}/words/getWords?name=english`)
+    getWords('english')
       .then((res) => {
-          wordsData = res.data.words;
-          setLoading(false);
+        wordsData = res?.data.words;
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching words:', error);
         setLoading(false);
       });
   }, []);
+
   return (
     <div className={styles.wrapper}>
       {status == 'finished' ? (

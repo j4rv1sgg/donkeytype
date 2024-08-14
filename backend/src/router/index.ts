@@ -13,6 +13,7 @@ authRouter.get('/checkUsername', UserController.checkUsername)
 
 export const wordsRouter = Router()
 wordsRouter.get('/getWords', WordsController.getWords)
+wordsRouter.get('/getAviableWords', WordsController.getAviableWordSets)
 
 export const resultsRouter = Router()
 

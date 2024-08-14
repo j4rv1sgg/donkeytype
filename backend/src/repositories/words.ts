@@ -10,5 +10,12 @@ class WordsRepository {
     }
     return response[0]
   }
+  static async getAviableWords() {
+    const response = await db.select({name: wordsTable.name}).from(wordsTable);
+    if(!response.length){
+      return null
+    }
+    return response
+  }
 }
 export default WordsRepository
