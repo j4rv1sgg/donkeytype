@@ -1,0 +1,22 @@
+.trigger{
+  margin: 0 auto;
+  cursor: pointer;
+}
+.list{
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+li{
+  list-style-type: none;
+  padding: 5px 20px;
+  margin-top: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.listItemActive{
+  color: var(--alt-color)
+}
+li:hover{
+  background-color: var(--alt-color);
+  color: var(--sub-color);
+}

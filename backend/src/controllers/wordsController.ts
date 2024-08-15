@@ -12,5 +12,14 @@ class WordsController {
       return ErrorsUtils.catchError(res, err);
     }
   }
+  static async getAviableWordSets(req: Request, res: Response) {
+    try {
+      const wordsData = await WordsRepository.getAviableWords();
+      const result = wordsData?.map(item => item.name)
+      return res.status(200).json(result);
+    } catch (err) {
+      return ErrorsUtils.catchError(res, err);
+    }
+  }
 }
 export default WordsController;

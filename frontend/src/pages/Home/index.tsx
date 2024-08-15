@@ -7,8 +7,9 @@ import { StatusContext } from '@/context/StatusContext';
 import { Results } from '@/types/Results';
 import { StatusContextType } from '@/types/Status';
 import Circle from '@/components/Circle';
-import axios from 'axios';
-import appConfig from '../../../config';
+import { getWords } from '@/services/wordsServices';
+import { ConfigContext } from '@/context/ConfigContext';
+import { ConfigContextType } from '@/types/Config';
 
 let wordsData: string[] = [];
 
@@ -19,23 +20,23 @@ export default function Home() {
     charCorrectness: {},
     accuracy: { correct: 0, incorrect: 0 },
     isAfk: false,
-    time: 0
+    time: 0,
   });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-expect-error */
+  const [config] = useContext(ConfigContext) as ConfigContextType
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${appConfig.API_URL}/words/getWords?name=english`)
+    setLoading(true)
+    getWords(config.words)
       .then((res) => {
-          wordsData = res.data.words;
-          setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching words:', error);
+        wordsData = res?.data.words;
         setLoading(false);
-      });
-  }, []);
+      })
+  }, [config.words]);
+
   return (
     <div className={styles.wrapper}>
       {status == 'finished' ? (

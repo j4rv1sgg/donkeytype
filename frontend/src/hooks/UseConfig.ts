@@ -10,7 +10,8 @@ const UseConfig = (key: string) => {
     time: 15,
     capitalizing: false,
     numbers: false,
-    liveWPM: false
+    liveWPM: false,
+    words: 'english'
   };
 
   const [config, setConfig] = useState<Config>(() => {

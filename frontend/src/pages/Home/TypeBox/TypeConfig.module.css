@@ -1,13 +1,15 @@
-.container {
+.container{
+  color: var(--text-color);
+}
+.configContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
   background-color: #2a277a;
   padding: 0 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.25rem;
   border-radius: 0.5rem;
-  color: var(--text-color);
 }
 .configButton {
   margin: 0.5rem;
@@ -16,4 +18,12 @@
 .capitalizeSvg {
   width: 15px;
   height: 15px;
+}
+.languageContainer{
+  display: flex;
+  margin-bottom: 1.25rem;
+}
+.languageTitle{
+  margin: 0 auto;
+  cursor: pointer;
 }

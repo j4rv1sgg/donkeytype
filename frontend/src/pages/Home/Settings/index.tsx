@@ -13,6 +13,7 @@ export default function Settnigs() {
   const [config, updateConfig] = useContext(
     ConfigContext
   ) as ConfigContextType | null;
+  
   const toggleSetting = () => {
     updateConfig({ liveWPM: !config.liveWPM });
   };
