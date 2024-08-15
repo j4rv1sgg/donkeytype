@@ -4,6 +4,7 @@ export interface Config {
   numbers: boolean,
   punctuation: boolean,
   liveWPM: boolean,
+  words: string,
 }
 export interface ConfigField {
   [key: string]: number | string;

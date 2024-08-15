@@ -8,6 +8,8 @@ import { Results } from '@/types/Results';
 import { StatusContextType } from '@/types/Status';
 import Circle from '@/components/Circle';
 import { getWords } from '@/services/wordsServices';
+import { ConfigContext } from '@/context/ConfigContext';
+import { ConfigContextType } from '@/types/Config';
 
 let wordsData: string[] = [];
 
@@ -20,20 +22,20 @@ export default function Home() {
     isAfk: false,
     time: 0,
   });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-expect-error */
+  const [config] = useContext(ConfigContext) as ConfigContextType
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getWords('english')
+    setLoading(true)
+    getWords(config.words)
       .then((res) => {
         wordsData = res?.data.words;
         setLoading(false);
       })
-      .catch((error) => {
-        console.error('Error fetching words:', error);
-        setLoading(false);
-      });
-  }, []);
+  }, [config.words]);
 
   return (
     <div className={styles.wrapper}>

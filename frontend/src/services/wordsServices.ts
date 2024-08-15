@@ -17,9 +17,8 @@ export const getWords = async (name: string) => {
 export const getAviableWordSets = async () => {
   try {
     const res = await WordsApi.get(`/getAviableWords`);
-    console.log(res)
     return res
   } catch (error) {
-      console.error(error);
+      console.error('Error fetching words:', error);
   }
 }
