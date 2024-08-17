@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './LangugagePopup.module.css';
 import Popup from '@/components/PopUp';
 import { getAviableWordSets } from '@/services/wordsServices';
+import { Earth } from 'lucide-react';
 
 export default function LanguagePopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,9 @@ export default function LanguagePopup() {
           setIsOpen(true);
         }}
       >
+        <Earth
+          size={21}
+        />
         {config.words}
       </div>
       <Popup show={isOpen} onClose={() => setIsOpen(false)}>

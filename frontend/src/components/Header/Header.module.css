@@ -24,6 +24,11 @@
   cursor: pointer;
   margin-left: 7px;
 }
+.profile{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
 .headerButtons{
   display: flex;
   align-items: center;

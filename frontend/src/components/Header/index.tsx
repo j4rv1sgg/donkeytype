@@ -33,16 +33,20 @@ export default function Header() {
       <div className={styles.headerButtons}>
         {isUserLogged ? (
           <>
-            <span className={styles.username}>{username}</span>
-
-            <CircleUserRound
-              className={styles.headerButton}
+            <div
+              className={styles.profile}
               onClick={() => navigate('/dashboard')}
-              strokeWidth={3}
-              width={26}
-              height={26}
-              color="var(--alt-color)"
-            />
+            >
+              <span className={styles.username}>{username}</span>
+
+              <CircleUserRound
+                className={styles.headerButton}
+                strokeWidth={3}
+                width={26}
+                height={26}
+                color="var(--alt-color)"
+              />
+            </div>
             <LogOut
               className={styles.headerButton}
               onClick={handleLogoutClick}
