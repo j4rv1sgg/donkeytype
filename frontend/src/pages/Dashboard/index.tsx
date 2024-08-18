@@ -7,16 +7,15 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { CircleUserRound } from 'lucide-react';
-import { getBestResults } from '@/services/resultServices';
+import { getBestResults, getDashboard } from '@/services/resultServices';
 import Circle from '@/components/Circle';
 
 export default function Dashboard() {
   const [data, setData] = useState({});
+  const [newData, setNewData] = useState({})
   const { isUserLogged } = useContext(AuthContext) as { isUserLogged: boolean };
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  const username = localStorage.getItem('username');
 
   useEffect(() => {
     async function fetchData() {
@@ -25,6 +24,9 @@ export default function Dashboard() {
       } else {
         const res = await getBestResults();
         setData(res.data);
+
+        const response = await getDashboard()
+        setNewData(response)
         setLoading(false);
       }
     }
@@ -42,7 +44,9 @@ export default function Dashboard() {
           <div className={styles.mainCard}>
             <div className={styles.leftSide}>
               <CircleUserRound strokeWidth={2} width={80} height={80} />
-              <span>{username || '-'}</span>
+              <span>{newData.username || '-'}</span>
+              <p>Joined {newData.joinDate}</p>
+              
             </div>
             <div className={styles.rightSide}>
               <div className={styles.listItem}>
