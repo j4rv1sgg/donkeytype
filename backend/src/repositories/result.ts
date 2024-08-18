@@ -15,12 +15,6 @@ class ResultRepository {
       .from(resultsTable)
       .where(eq(resultsTable.userId, userId));
   }
-  static async getResultsById(userId) {
-    return db
-      .select()
-      .from(resultsTable)
-      .where(eq(resultsTable.userId, userId));
-  }
   static async getBestResults({ time }) {
     return db
       .select({
@@ -32,6 +26,15 @@ class ResultRepository {
       .innerJoin(usersTable, eq(resultsTable.userId, usersTable.id))
       .groupBy(usersTable.username)
       .orderBy(desc(max(resultsTable.wpm)))
+  }
+  static async getDashboard(userId) {
+    return db
+      .select({
+        username: usersTable.username,
+        joinDate: usersTable.joinDate
+      })
+      .from(usersTable)
+      .where(eq(usersTable.id, userId));
   }
 }
 

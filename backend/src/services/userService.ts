@@ -11,10 +11,13 @@ class userService {
 
     const hashedPassword = bcrypt.hashSync(password, 8)
 
+    const joinDate = new Date()
+
     const [{insertedId}] = await UserRepository.createUser({
       username,
       email,
-      hashedPassword
+      hashedPassword,
+      joinDate
     })
 
     const payload = {insertedId, username, email}
