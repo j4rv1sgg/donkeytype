@@ -18,7 +18,7 @@ export const refreshSessions = pgTable("refreshSessions", {
 export const wordsTable = pgTable("words", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  words: text('words').array().notNull(),
+  words: text("words").array().notNull(),
 })
 
 export const resultsTable = pgTable("results", {

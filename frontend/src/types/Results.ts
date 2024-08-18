@@ -8,4 +8,12 @@ export type Results = {
   isAfk: boolean,
   time: number,
 }
-export type ResultsToSend = Pick<Results, 'wpm' | 'time'>;
+export type ResultsToSend = Pick<Results, 'wpm' | 'time'> & {
+  corectness: Accuracy,
+  accuracy: number,
+  words: string,
+  date: string, 
+  punctuation: boolean,
+  capitals: boolean,
+  numbers: boolean
+}
