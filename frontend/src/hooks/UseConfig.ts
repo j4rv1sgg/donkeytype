@@ -8,7 +8,7 @@ interface Config {
 const UseConfig = (key: string) => {
   const defaultConfig = {
     time: 15,
-    capitalizing: false,
+    capitals: false,
     numbers: false,
     liveWPM: false,
     words: 'english'
