@@ -15,9 +15,12 @@ function getMaxWPM(data, time) {
 }
 
 class ResultsService {
-  static async getResultsByUser(userId) {
-    const allResults = await ResultRepository.getResultsById(userId)
-    console.log(allResults)
+  // static async getResultsByUser(userId) {
+  //   const allResults = await ResultRepository.getResultsById(userId)
+  // }
+  static async getDashboardByUser(userId) {
+    const res = await ResultRepository.getDashboard(userId)
+    return res[0]
   }
   
   static async getBestResultsByUser(userId) {

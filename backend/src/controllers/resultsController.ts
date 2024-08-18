@@ -41,5 +41,15 @@ class restulsController {
       console.error(error);
     }
   }
+  static async getDashboard(req: Request, res: Response) {
+    const { userId } = req.query;
+    try {
+      const data = await ResultsService.getDashboardByUser(userId);
+      return res.status(200).json(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 }
 export default restulsController;

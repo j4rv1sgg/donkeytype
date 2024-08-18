@@ -21,10 +21,10 @@ class UserRepository {
   }
   
 
-  static async createUser({username, email, hashedPassword}) {
+  static async createUser({username, email, hashedPassword, joinDate}) {
     return db
       .insert(usersTable)
-      .values({ username: username, email: email, password: hashedPassword })
+      .values({ username: username, email: email, password: hashedPassword, joinDate: joinDate })
       .returning({insertedId: usersTable.id})
   }
 

@@ -5,6 +5,7 @@ import config from '../../config';
 import { Results } from '@/types/Results';
 import { jwtDecode } from 'jwt-decode';
 import inMemoryJWTService from './inMemoryJWTService';
+import { format } from 'date-fns';
 
 export const ResultApi = axios.create({
   baseURL: `${config.API_URL}/results`,
@@ -13,13 +14,12 @@ export const ResultApi = axios.create({
 
 export const saveResult = async (result: Results) => {
   const userData = jwtDecode(inMemoryJWTService.getToken());
-  if(userData) {
-
+  if (userData) {
     const resultData = {
       ...result,
       userId: userData.id,
     };
-    
+
     delete resultData.speedHistory;
     delete resultData.accuracy;
     delete resultData.isAfk;
@@ -33,8 +33,8 @@ export const saveResult = async (result: Results) => {
 };
 
 export const getBestResults = async () => {
-  const {id} = jwtDecode(inMemoryJWTService.getToken());
-  if(id){
+  const { id } = jwtDecode(inMemoryJWTService.getToken());
+  if (id) {
     try {
       const res = await ResultApi.get(`/getBestResults?userId=${id}`);
       return res;
@@ -44,10 +44,25 @@ export const getBestResults = async () => {
   }
 };
 export const getLeaderboard = async (time) => {
+  try {
+    const res = await ResultApi.get(`/getLeaderboard?time=${time}`);
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getDashboard = async () => {
+  const { id } = jwtDecode(inMemoryJWTService.getToken());
+  if (id) {
     try {
-      const res = await ResultApi.get(`/getLeaderboard?time=${time}`);
-      return res;
+      const { data } = await ResultApi.get(`/getDashboard?userId=${id}`);
+
+      const joinDateIsoStr = format(new Date(data.joinDate), 'dd MMM yyyy');
+      data.joinDate = joinDateIsoStr;
+
+      return data;
     } catch (error) {
       console.error(error);
     }
+  }
 };
