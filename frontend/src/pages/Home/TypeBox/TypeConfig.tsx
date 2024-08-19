@@ -17,11 +17,11 @@ export default function TypeConfig({ isVisible }: Props) {
 
   const timeOptions = [15, 30, 60];
   return (
-    <div className={styles.container}>
-      <div
-        className={styles.configContainer}
-        style={!isVisible ? { opacity: 0, pointerEvents: 'none' } : {}}
-      >
+    <div
+      className={styles.container}
+      style={!isVisible ? { opacity: 0, pointerEvents: 'none' } : {}}
+    >
+      <div className={styles.configContainer}>
         {timeOptions.map((item, i) => (
           <span
             key={i}
@@ -55,7 +55,7 @@ export default function TypeConfig({ isVisible }: Props) {
         </span>
       </div>
       <div className={styles.languageContainer}>
-        <LanguagePopup/>
+        <LanguagePopup />
       </div>
     </div>
   );
