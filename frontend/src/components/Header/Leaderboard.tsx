@@ -39,7 +39,7 @@ export default function Leaderboard() {
 
   return (
     <>
-      <Crown color="var(--alt-color)" size={23} onClick={togglePopup}>
+      <Crown color="var(--sub-color)" size={23} onClick={togglePopup}>
         Leaderboard
       </Crown>
       <Popup show={showPopup} onClose={togglePopup}>

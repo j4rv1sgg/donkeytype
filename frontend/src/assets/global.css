@@ -13,7 +13,7 @@
   --error-extra-color: #7e2a33;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  
+
   color-scheme: light dark;
   color: var(--sub-color);
   background-color: var(--bg-color);
@@ -21,10 +21,10 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
-#root{
+#root {
   width: 100%;
 }
-.wrapper{
+.wrapper {
   height: 100%;
   width: 100%;
   max-width: 1600px;
@@ -42,32 +42,33 @@ body {
   align-items: center;
 }
 
-input{
+input {
   background-color: var(--sub-alt-color);
   border: none;
   height: 30px;
-  /* border: 1px solid var(--text-color); */
-  color: var(--text-color);;
+  font-family: inherit;
+  color: var(--text-color);
   border-radius: 5px;
+  height: 30px
 }
 
-button{
+button {
   width: 120px;
   height: 30px;
   color: var(--text-color);
   background-color: var(--sub-alt-color);
-  /* border: 1px solid var(--text-color); */
+  font-family: inherit;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
-button:hover{
+button:hover {
   color: var(--sub-alt-color);
   background-color: var(--text-color);
 }
-label{
+label {
   font-size: small;
   display: block;
   color: var(--sub-color);
@@ -82,7 +83,7 @@ label{
   font-size: 18px;
 }
 
-.word{
+.word {
   margin: 8px;
   font-size: 1.1em;
   line-height: 28px;
@@ -91,20 +92,21 @@ label{
   margin: 0 0.5px;
 }
 @keyframes smooth-blink {
-  0%, 100% {
-    opacity: 1; 
+  0%,
+  100% {
+    opacity: 1;
   }
   50% {
-    opacity: 0; 
+    opacity: 0;
   }
 }
 
-.current-char{
+.current-char {
   position: relative;
 }
 
-.current-char::before{
-  content: "";
+.current-char::before {
+  content: '';
   position: absolute;
   left: -1.5px;
   top: 0;
@@ -115,11 +117,11 @@ label{
   animation: smooth-blink 1s infinite;
   animation-delay: 1.5s;
 }
-.caret-right{
+.caret-right {
   position: relative;
 }
-.caret-right::after{
-  content: "";
+.caret-right::after {
+  content: '';
   position: absolute;
   right: -1.5px;
   top: 0;
@@ -128,19 +130,15 @@ label{
   height: 100%;
   background-color: var(--caret-color);
   animation: smooth-blink 1s infinite;
-  animation-delay: 1.5s;}
+  animation-delay: 1.5s;
+}
 
-
-
-
-.correct-char{
+.correct-char {
   color: var(--text-color);
 }
-.error-char{
+.error-char {
   color: var(--error-color);
 }
-.error{
+.error {
   border-bottom: 1.5px solid var(--error-color);
 }
-
-

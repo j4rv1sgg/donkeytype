@@ -27,7 +27,7 @@ export default function TypeConfig({ isVisible }: Props) {
             key={i}
             className={styles.configButton}
             onClick={() => updateConfig({ time: item })}
-            style={{ color: item === config.time ? '#f2ce83' : 'inherit' }}
+            style={{ color: item === config.time ? 'var(--main-color)' : 'inherit' }}
           >
             {item}
           </span>
@@ -35,21 +35,21 @@ export default function TypeConfig({ isVisible }: Props) {
         <span
           className={styles.configButton}
           onClick={() => updateConfig({ capitals: !config.capitals })}
-          style={{ color: config.capitals ? '#f2ce83' : 'inherit' }}
+          style={{ color: config.capitals ? 'var(--main-color)' : 'inherit' }}
         >
           capitals
         </span>
         <span
           className={styles.configButton}
           onClick={() => updateConfig({ punctuation: !config.punctuation })}
-          style={{ color: config.punctuation ? '#f2ce83' : 'inherit' }}
+          style={{ color: config.punctuation ? 'var(--main-color)' : 'inherit' }}
         >
           punctuation
         </span>
         <span
           className={styles.configButton}
           onClick={() => updateConfig({ numbers: !config.numbers })}
-          style={{ color: config.numbers ? '#f2ce83' : 'inherit' }}
+          style={{ color: config.numbers ? 'var(--main-color)' : 'inherit' }}
         >
           numbers
         </span>

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className={styles.container}>
       <a href="https://github.com/j4rv1sgg/donkeytype">
-        <Github height={27} width={27} color="var(--alt-color)" />
+        <Github height={27} width={27} color="var(--sub-color)" />
       </a>
       <Settings />
     </div>

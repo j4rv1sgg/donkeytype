@@ -17,7 +17,7 @@ const Circle: React.FC<CircleProps> = ({ center }) => {
         visible={true}
         height="60"
         width="60"
-        color="var(--alt-color)"
+        color="var(--sub-color)"
         ariaLabel="tail-spin-loading"
         radius="0"
       />

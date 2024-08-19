@@ -1,12 +1,10 @@
-.container{
-  color: var(--text-color);
-}
+
 .configContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
-  background-color: #2a277a;
+  background-color: var(--sub-alt-color);
   padding: 0 1rem;
   margin-bottom: 1.25rem;
   border-radius: 0.5rem;

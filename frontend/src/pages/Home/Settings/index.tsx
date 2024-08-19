@@ -23,7 +23,7 @@ export default function Settnigs() {
        className={styles.icon}
        height={26}
        width={26}
-       color='var(--alt-color)'
+       color='var(--sub-color)'
        onClick={() => {
         setIsOpen(true);
       }}/>
