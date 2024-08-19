@@ -1,14 +1,19 @@
 import { UserSignInType } from '@/types/User';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styles from './Form.module.css';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '@/components/PasswordInput';
 
 export default function RegisterForm() {
-  const { handleSignIn } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { handleSignIn, isUserLogged } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isUserLogged) {
+      navigate('/');
+    }
+  }, [isUserLogged, navigate]);
   const [isWrong, setIsWrong] = useState(false);
   const { register, handleSubmit } = useForm<UserSignInType>();
 
@@ -19,8 +24,8 @@ export default function RegisterForm() {
     if (res.message == 'Wrong email or password') {
       setIsWrong(true);
     }
-    if(res.success){
-      navigate('/')
+    if (res.success) {
+      navigate('/');
     }
   };
 
