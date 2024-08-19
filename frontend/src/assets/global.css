@@ -1,17 +1,22 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 :root {
-  --main-color: #241963;
-  --sub-color: #2a277a;
-  --text-color: #446ad5;
-  --alt-color: #f2ce83;
-  --sub-alt-color: #c6915e;
+  --bg-color: #081426;
+  --main-color: #f17754;
+  --caret-color: #ef6d49;
+  --sub-color: #ffbc90;
+  --sub-alt-color: #040e1d;
+  --text-color: #ffe4bc;
+  --error-color: #ca4754;
+  --error-extra-color: #7e2a33;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   
   color-scheme: light dark;
-  color: white;
-  background-color: var(--main-color);
+  color: var(--sub-color);
+  background-color: var(--bg-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,30 +43,34 @@ body {
 }
 
 input{
-  background-color: var(--sub-color);
+  background-color: var(--sub-alt-color);
   border: none;
   height: 30px;
-  border: 1px solid var(--text-color);
+  /* border: 1px solid var(--text-color); */
+  color: var(--text-color);;
   border-radius: 5px;
 }
 
 button{
   width: 120px;
   height: 30px;
-  background-color: var(--sub-color);
-  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  background-color: var(--sub-alt-color);
+  /* border: 1px solid var(--text-color); */
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
 button:hover{
+  color: var(--sub-alt-color);
   background-color: var(--text-color);
 }
 label{
   font-size: small;
   display: block;
-  color: var(--text-color);
+  color: var(--sub-color);
 }
 
 .container {
@@ -81,22 +90,57 @@ label{
 .word span {
   margin: 0 0.5px;
 }
+@keyframes smooth-blink {
+  0%, 100% {
+    opacity: 1; 
+  }
+  50% {
+    opacity: 0; 
+  }
+}
 
 .current-char{
-  border-left: 2px solid white;
-}
-.caret-right{
-  border-right: 2px solid white;
-}
-.correct-char{
-  color: white;
-}
-.error-char{
-  color: var(--sub-alt-color);
+  position: relative;
 }
 
+.current-char::before{
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--caret-color);
+  animation: smooth-blink 1s infinite;
+  animation-delay: 1.5s;
+}
+.caret-right{
+  position: relative;
+}
+.caret-right::after{
+  content: "";
+  position: absolute;
+  right: -1.5px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--caret-color);
+  animation: smooth-blink 1s infinite;
+  animation-delay: 1.5s;}
+
+
+
+
+.correct-char{
+  color: var(--text-color);
+}
+.error-char{
+  color: var(--error-color);
+}
 .error{
-  border-bottom: 1.5px solid var(--alt-color);
+  border-bottom: 1.5px solid var(--error-color);
 }
 
 
