@@ -8,6 +8,7 @@
 
 }
 .list{
+  margin-top: 10px;
   color: var(--text-color);
   font-size: 1.1rem;
 }
@@ -19,9 +20,9 @@ li{
   border-radius: 5px;
 }
 .listItemActive{
-  color: var(--alt-color)
+  color: var(--main-color)
 }
 li:hover{
-  background-color: var(--alt-color);
-  color: var(--sub-color);
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }

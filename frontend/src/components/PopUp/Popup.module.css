@@ -13,6 +13,7 @@
   animation: popupEnter 0.2s ease forwards;
 }
 
+
 @keyframes popupEnter {
   from {
     opacity: 0;
@@ -23,7 +24,7 @@
 }
 
 .popupContent {
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   padding: 20px;
   border-radius: 5px;
   position: relative;
@@ -31,7 +32,7 @@
   height: 80vh;
   width: 60vw;
   max-width: 720px;
-  color: white;
+  overflow: auto;
 }
 
 .closeButton {
@@ -45,7 +46,9 @@
   border-radius: 20%;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  transition: color 0.2s ease;
 }
 .closeButton:hover {
-  background-color: var(--text-color);
+  color: var(--sub-alt-color);
+  background-color: var(--sub-color);
 }

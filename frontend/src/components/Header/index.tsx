@@ -44,13 +44,13 @@ export default function Header() {
                 strokeWidth={3}
                 width={26}
                 height={26}
-                color="var(--alt-color)"
+                color="var(--sub-color)"
               />
             </div>
             <LogOut
               className={styles.headerButton}
               onClick={handleLogoutClick}
-              color="var(--alt-color)"
+              color="var(--sub-color)"
               width={26}
               height={26}
               strokeWidth={3.5}
@@ -63,7 +63,7 @@ export default function Header() {
             strokeWidth={3}
             width={26}
             height={26}
-            color="var(--alt-color)"
+            color="var(--sub-color)"
           />
         )}
       </div>

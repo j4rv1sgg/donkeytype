@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 .mainCard{
-  background-color: var(--sub-color);
+  background-color: var(--sub-alt-color);
   border-radius: 1rem;
   padding: 14px;
   display: flex;

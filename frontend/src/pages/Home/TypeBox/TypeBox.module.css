@@ -22,7 +22,7 @@
   overflow: hidden;
 }
 .words {
-  color: var(--text-color);
+  color: var(--alt-color);
   position: absolute;
   font-size: 33px;
   max-width: 1600px;
@@ -32,6 +32,7 @@
   transition: opacity 0.2s ease, filter 0.2s ease;
 }
 .startSign{
+  color: var(--text-color);
   position: absolute;
   top: 31%;
   pointer-events: none;
