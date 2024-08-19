@@ -22,24 +22,24 @@
   overflow: hidden;
 }
 .words {
-  color: #446ad5;
+  color: var(--text-color);
   position: absolute;
   font-size: 33px;
   max-width: 1600px;
   display: flex;
   flex-wrap: wrap;
   cursor: default;
-}
-.blurred{
-  filter: blur(4px);
-  opacity: .25;
-  z-index: 1;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 .startSign{
   position: absolute;
   top: 31%;
-  color: white;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.startSignVisible{
+  opacity: 1;
 }
 .liveStats{
   position: absolute;

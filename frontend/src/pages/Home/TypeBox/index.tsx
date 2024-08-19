@@ -464,9 +464,10 @@ const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
             </div>
           </div>
         </div>
-        {!isFocused && (
-          <div className={styles.startSign}>Click here to start typing</div>
-        )}
+        <div className={`${styles.startSign} ${
+            !isFocused ? styles.startSignVisible : ""
+          }`}>Click here to start typing</div>
+        
         <input
           key="hidden-input"
           ref={inputRef}
