@@ -481,6 +481,7 @@ const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
           onBlur={() => handleFocus(false)}
           onInput={handleInput}
           onChange={(e) => updateInput(e)}
+          onPaste={(e) => e.preventDefault()}
         />
         <CapsLockPopup open={capsLocked} />
       </div>
