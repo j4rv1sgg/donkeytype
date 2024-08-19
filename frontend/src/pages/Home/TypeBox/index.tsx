@@ -26,7 +26,7 @@ interface WordRefs {
   ref: RefObject<HTMLSpanElement>;
 }
 
-const punctuationMarks = [',', '.', ':', '!'];
+const punctuationMarks = [',', '.', ':', '!', '-'];
 const punctuationMarksToAllow = punctuationMarks.concat(["'"]);
 
 const speedHistory: speedHistoryType = {};
@@ -307,6 +307,7 @@ const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
       !(keyCode >= 48 && keyCode <= 57) && // Numbers
       !(keyCode >= 65 && keyCode <= 90) && // Uppercase letters
       !(keyCode >= 97 && keyCode <= 122) && // Lowercase letters
+      !(keyCode >= 186 && keyCode <= 221) && // Cirillic letters
       !punctuationMarksToAllow.includes(key)
     ) {
       e.preventDefault();
