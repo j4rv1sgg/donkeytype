@@ -4,10 +4,22 @@ import { eq, max, desc } from 'drizzle-orm';
 import { db } from '../db/setup';
 
 class ResultRepository {
-  static async registerResult({ userId, time, wpm }) {
+  static async registerResult(data) {
     return db
       .insert(resultsTable)
-      .values({ userId: userId, time: time, wpm: wpm });
+      .values({
+        wpm: data.wpm,
+        time: data.time,
+        words: data.words,
+        correct: data.correct,
+        inCorrect: data.inCorrect,
+        accuracy: data.accuracy,
+        punctuation: data.punctuation,
+        capitals: data.capitals,
+        numbers: data.numbers,
+        userId: data.userId,
+        date: data.date
+      });
   }
   static async getResultsById(userId) {
     return db
@@ -25,13 +37,13 @@ class ResultRepository {
       .where(eq(resultsTable.time, time))
       .innerJoin(usersTable, eq(resultsTable.userId, usersTable.id))
       .groupBy(usersTable.username)
-      .orderBy(desc(max(resultsTable.wpm)))
+      .orderBy(desc(max(resultsTable.wpm)));
   }
   static async getDashboard(userId) {
     return db
       .select({
         username: usersTable.username,
-        joinDate: usersTable.joinDate
+        joinDate: usersTable.joinDate,
       })
       .from(usersTable)
       .where(eq(usersTable.id, userId));

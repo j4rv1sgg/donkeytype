@@ -1,18 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
+// @ts-nocheck
 import { Results } from '@/types/Results';
 import Chart from './Chart';
 import styles from './Stats.module.css';
 import { useContext, useEffect } from 'react';
-import { Accuracy } from '@/types/Results';
 import { saveResult } from '@/services/resultServices';
 import { AuthContext } from '@/context/AuthContext';
 import { ConfigContextType } from '@/types/Config';
 import { ConfigContext } from '@/context/ConfigContext';
-
-const calcAccuracy = ({ correct, incorrect }: Accuracy) => {
-  return Math.floor((100 / (correct + incorrect)) * correct) | 0;
-};
+import { calcAccuracy } from '@/utils/caltAccuracy';
 
 interface Props {
   result: Results;
@@ -23,11 +19,21 @@ const Stats: React.FC<Props> = ({ result, setStatus }) => {
   const { isUserLogged } = useContext(AuthContext);
 
   const [config] = useContext(ConfigContext) as ConfigContextType | null;
- 
   useEffect(() => {
     let isSended: boolean = false;
     if (isUserLogged && !isSended) {
-      saveResult(result);
+      const dataToSend = {
+        wpm: result.wpm,
+        time: result.time,
+        words: config.words,
+        correct: result.accuracy.correct,
+        inCorrect: result.accuracy.incorrect,
+        accuracy: calcAccuracy(result.accuracy),
+        punctuation: config.punctuation,
+        capitals: config.capitals,
+        numbers: config.numbers,
+      }
+      saveResult(dataToSend);
       isSended = true;
     }
     const handleTabPress = (event: KeyboardEvent) => {
@@ -44,7 +50,6 @@ const Stats: React.FC<Props> = ({ result, setStatus }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setStatus]);
-  console.log(config)
   return (
     <div className={styles.wrapper}>
       <div className={styles.results}>

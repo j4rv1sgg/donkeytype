@@ -2,7 +2,6 @@
 //@ts-nocheck
 import axios from 'axios';
 import config from '../../config';
-import { Results } from '@/types/Results';
 import { jwtDecode } from 'jwt-decode';
 import inMemoryJWTService from './inMemoryJWTService';
 import { format } from 'date-fns';
@@ -12,18 +11,14 @@ export const ResultApi = axios.create({
   withCredentials: true,
 });
 
-export const saveResult = async (result: Results) => {
+export const saveResult = async (result) => {
   const userData = jwtDecode(inMemoryJWTService.getToken());
+
   if (userData) {
     const resultData = {
       ...result,
       userId: userData.id,
     };
-
-    delete resultData.speedHistory;
-    delete resultData.accuracy;
-    delete resultData.isAfk;
-    resultData.userId = userData.id;
     try {
       await ResultApi.post('/save', resultData);
     } catch (error) {

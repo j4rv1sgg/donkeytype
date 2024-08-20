@@ -5,13 +5,13 @@ import ResultsService from '../services/resultsService';
 
 class restulsController {
   static async registerResult(req: Request, res: Response) {
-    const { userId, time, wpm } = req.body;
+    const data = {...req.body};
+    data.date = new Date()
     try {
-      await ResultRepository.registerResult({ userId, time, wpm });
-
+      await ResultRepository.registerResult(data);
       return res.status(201).json('Result saved');
     } catch (err) {
-      return ErrorsUtils.catchError(res, err);
+      console.error(err)
     }
   }
   static async getBestResultsByUser(req: Request, res: Response) {
