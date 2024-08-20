@@ -1,6 +1,6 @@
 .wrapper{
   width: 100%;
-  color: var(--text-color)
+  color: var(--sub-color)
 }
 .results{
   display: grid;
@@ -21,7 +21,7 @@
   font-size: 25px;
 }
 .mainstats span {
-  color: #f2ce83;
+  color: var(--main-color);
   font-size: 50px;
   margin-bottom: 5px;
 }
@@ -37,7 +37,7 @@
   font-size: 18px;
 }
 .substats span{
-  color: var(--alt-color);
+  color: var(--main-color);
   font-size: 30px;
 }
 .mode p{
@@ -46,11 +46,7 @@
 }
 .mode p:first-child{
   font-size: 18px;
-  color: var(--text-color)
-}
-.mode span{
-  color: #f2ce83;
-  font-size: 30px;
+  color: var(--sub-color)
 }
 .restartSign{
   max-width: fit-content;

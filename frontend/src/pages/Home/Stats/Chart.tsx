@@ -18,7 +18,11 @@ ChartJS.register(
   Tooltip
 );
 interface Props {
-  chartData: number[]
+  chartData: number[];
+}
+
+function cssvar(name: string) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name);
 }
 
 const Chart = ({ chartData }: Props) => {
@@ -26,29 +30,27 @@ const Chart = ({ chartData }: Props) => {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false, 
+    maintainAspectRatio: false,
     scales: {
       x: {
         ticks: {
-          color: '#446ad5'
-        }
+          color: cssvar('--sub-color'),
+        },
       },
       y: {
         min: 0,
         title: {
           display: true,
           text: 'WPM',
-          color: '#446ad5'
+          color: cssvar('--sub-color'),
         },
 
         ticks: {
           autoSkip: true,
           autoSkipPadding: 20,
-          color: '#446ad5',
-
+          color: cssvar('--sub-color'),
         },
       },
-      
     },
   };
 
@@ -57,13 +59,12 @@ const Chart = ({ chartData }: Props) => {
     datasets: [
       {
         lineTension: 0.4,
-        borderColor: '#f2ce83',
-        
-        pointBorderColor: '#f2ce83',
-        pointBackgroundColor: '#f2ce83',
+        borderColor: cssvar('--main-color'),
+        pointBorderColor: cssvar('--main-color'),
+        pointBackgroundColor: cssvar('--main-color'),
         pointHoverRadius: 3,
-        pointHoverBackgroundColor: '#f2ce83',
-        pointHoverBorderColor: '#f2ce83',
+        pointHoverBackgroundColor: cssvar('--main-color'),
+        pointHoverBorderColor: cssvar('--main-color'),
         pointHoverBorderWidth: 2,
         pointRadius: 2,
         pointHitRadius: 5,
