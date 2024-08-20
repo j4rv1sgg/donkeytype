@@ -9,7 +9,8 @@ export type Results = {
   time: number,
 }
 export type ResultsToSend = Pick<Results, 'wpm' | 'time'> & {
-  corectness: Accuracy,
+  corect: number,
+  inCorrect: number,
   accuracy: number,
   words: string,
   date: string, 
