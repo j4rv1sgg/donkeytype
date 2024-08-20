@@ -2,7 +2,6 @@
   "name": "donkeytype",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://j4rv1sgg.github.io/donkeytype",
   "type": "module",
   "scripts": {
     "start": "npx http-server ./dist",
