@@ -23,6 +23,15 @@ class restulsController {
         console.error(error)
       }
   }
+  static async getResultsByUser(req: Request, res: Response) {
+    const { userId } = req.query;
+    try {
+      const data = await ResultsService.getResultsByUser(userId);
+      return res.status(200).json(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   static async getBestResultsByUser(req: Request, res: Response) {
     const { userId } = req.query;
     try {
