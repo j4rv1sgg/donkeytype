@@ -22,6 +22,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const [itemsToShow, setitemsToShow] = useState(10);
 
   useEffect(() => {
     async function fetchData() {
@@ -71,45 +72,64 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className={styles.results}>
-            <table className={styles.resultsTable}>
-              <thead>
-                <tr>
-                  <td>wpm</td>
-                  <td>accuracy</td>
-                  <td>correct chars</td>
-                  <td>incorrect chars</td>
-                  <td>time</td>
-                  <td>numbers</td>
-                  <td>capitals</td>
-                  <td>punctuation</td>
-                  <td>words</td>
-                  <td>date</td>
-                </tr>
-              </thead>
-              <tbody>
-                {results.map((item) => {
-                  return (
-                    <tr>
-                      <td className={styles.tableValue}>{item.wpm}</td>
-                      <td className={styles.tableValue}>{item.accuracy}</td>
-                      <td className={styles.tableValue}>{item.correct}</td>
-                      <td className={styles.tableValue}>{item.inCorrect}</td>
-                      <td className={styles.tableValue}>{item.time}</td>
-                      <td className={styles.tableValue}>{item.numbers ? 'on' : 'off'}</td>
-                      <td className={styles.tableValue}>{item.capitals ? 'on' : 'off'}</td>
-                      <td className={styles.tableValue}>{item.punctuation ? 'on' : 'off'}</td>
-                      <td className={styles.tableValue}>{item.words}</td>
-                      <td className={styles.tableValue}>{format(new Date(item.date), 'dd MMM yyyy')}
-                        <br/>
-                        {format(new Date(item.date), 'HH:mm')}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          {results.length ? (
+            <div className={styles.results}>
+              <table className={styles.resultsTable}>
+                <thead className={styles.tableHead}>
+                  <tr>
+                    <td>wpm</td>
+                    <td>accuracy</td>
+                    <td>correct</td>
+                    <td>incorrect</td>
+                    <td>time</td>
+                    <td>numbers</td>
+                    <td>capitals</td>
+                    <td>punctuation</td>
+                    <td>words</td>
+                    <td>date</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {results.slice(0, itemsToShow).map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className={styles.tableValue}>{item.wpm}</td>
+                        <td className={styles.tableValue}>{item.accuracy}%</td>
+                        <td className={styles.tableValue}>{item.correct}</td>
+                        <td className={styles.tableValue}>{item.inCorrect}</td>
+                        <td className={styles.tableValue}>{item.time}</td>
+                        <td className={styles.tableValue}>
+                          {item.numbers ? 'on' : 'off'}
+                        </td>
+                        <td className={styles.tableValue}>
+                          {item.capitals ? 'on' : 'off'}
+                        </td>
+                        <td className={styles.tableValue}>
+                          {item.punctuation ? 'on' : 'off'}
+                        </td>
+                        <td className={styles.tableValue}>{item.words}</td>
+                        <td className={styles.tableValue}>
+                          {format(new Date(item.date), 'dd MMM yyyy')}
+                          <br />
+                          {format(new Date(item.date), 'HH:mm')}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              {results.length > 10 && (
+                <button
+                  className={styles.seeMoreButton}
+                  onClick={() => setitemsToShow(itemsToShow + 10)}
+                >
+                  load more
+                </button>
+              )}
+            </div>
+          ) : (
+            <p className={styles.noTestsSign}>You have no completed tests.</p>
+          )}
         </div>
       )}
     </>

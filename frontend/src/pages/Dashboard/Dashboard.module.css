@@ -31,5 +31,22 @@
   margin-top: 100px;
 }
 .tableValue{
-  padding: 10px 0;
+  padding: 10px
+}
+.tableHead{
+  font-size: smaller;
+}
+.tableHead td{
+  padding: 10px
+}
+.seeMoreButton{
+  margin: 10px 0;
+  font-size: 18px;
+  width: 100%;
+}
+.noTestsSign{
+  margin: 50px 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
