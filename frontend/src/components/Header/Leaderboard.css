@@ -23,7 +23,7 @@ tbody td {
   padding: 10px;
 }
 
-tbody td:nth-child(3) {
+.wpm{
   text-align: end;
 }
 .tabTriggers {

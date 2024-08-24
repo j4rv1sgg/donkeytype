@@ -46,6 +46,17 @@ export const getLeaderboard = async (time) => {
     console.error(error);
   }
 };
+export const getResults = async () => {
+  const { id } = jwtDecode(inMemoryJWTService.getToken());
+  if (id) {
+    try {
+      const { data } = await ResultApi.get(`/getResults?userId=${id}`);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
 export const getDashboard = async () => {
   const { id } = jwtDecode(inMemoryJWTService.getToken());
   if (id) {

@@ -79,7 +79,7 @@ export default function Leaderboard() {
                 <tr key={entry.username}>
                   <td>{index + 1}</td>
                   <td>{entry.username}</td>
-                  <td>{entry.wpm}</td>
+                  <td className='wpm'>{entry.wpm}</td>
                 </tr>
               ))}
             </tbody>

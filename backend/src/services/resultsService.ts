@@ -22,6 +22,10 @@ class ResultsService {
     const res = await ResultRepository.getDashboard(userId)
     return res[0]
   }
+  static async getResultsByUser(userId) {
+    const res = await ResultRepository.getResults({userId})
+    return res
+  }
   
   static async getBestResultsByUser(userId) {
     const allResults = await ResultRepository.getResultsById(userId)

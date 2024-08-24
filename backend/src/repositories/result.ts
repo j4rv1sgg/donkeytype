@@ -39,6 +39,13 @@ class ResultRepository {
       .groupBy(usersTable.username)
       .orderBy(desc(max(resultsTable.wpm)));
   }
+  static async getResults({ userId }) {
+    return db
+      .select()
+      .from(resultsTable)
+      .where(eq(resultsTable.userId, userId))
+      .orderBy(desc(resultsTable.date))
+  }
   static async getDashboard(userId) {
     return db
       .select({
