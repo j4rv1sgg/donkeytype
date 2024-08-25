@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { CircleUserRound } from 'lucide-react';
 import {
-  getBestResults,
   getDashboard,
   getResults,
 } from '@/services/resultServices';
@@ -17,7 +16,6 @@ import { format } from 'date-fns';
 
 export default function Dashboard() {
   const [data, setData] = useState({});
-  const [newData, setNewData] = useState({});
   const { isUserLogged } = useContext(AuthContext) as { isUserLogged: boolean };
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
@@ -29,11 +27,8 @@ export default function Dashboard() {
       if (!isUserLogged) {
         navigate('/login');
       } else {
-        const res = await getBestResults();
-        setData(res.data);
-
         const response = await getDashboard();
-        setNewData(response);
+        setData(response);
 
         const resultsData = await getResults();
         setResults(resultsData);
@@ -54,8 +49,8 @@ export default function Dashboard() {
           <div className={styles.mainCard}>
             <div className={styles.leftSide}>
               <CircleUserRound strokeWidth={2} width={80} height={80} />
-              <span>{newData.username || '-'}</span>
-              <p>Joined {newData.joinDate}</p>
+              <span>{data.username || '-'}</span>
+              <p>Joined {data.joinDate}</p> 
             </div>
             <div className={styles.rightSide}>
               <div className={styles.listItem}>

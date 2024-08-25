@@ -1,31 +1,20 @@
 // @ts-nocheck
 import { resultsTable, usersTable } from '../db/schema';
-import { eq, max, desc } from 'drizzle-orm';
+import { eq, max, desc, count, avg, sum, and } from 'drizzle-orm';
 import { db } from '../db/setup';
 
 class ResultRepository {
   static async registerResult(data) {
-    return db
-      .insert(resultsTable)
-      .values({
-        wpm: data.wpm,
-        time: data.time,
-        words: data.words,
-        correct: data.correct,
-        inCorrect: data.inCorrect,
-        accuracy: data.accuracy,
-        punctuation: data.punctuation,
-        capitals: data.capitals,
-        numbers: data.numbers,
-        userId: data.userId,
-        date: data.date
-      });
+    return db.insert(resultsTable).values(data);
   }
-  static async getResultsById(userId) {
-    return db
-      .select()
+  static async getBestResultByTime({userId, time}) {
+    const res = await db
+      .select({
+        wpm: max(resultsTable.wpm)
+      })
       .from(resultsTable)
-      .where(eq(resultsTable.userId, userId));
+      .where(and(eq(resultsTable.userId, userId), eq(resultsTable.time, time)));
+      return res[0]
   }
   static async getBestResults({ time }) {
     return db
@@ -44,16 +33,41 @@ class ResultRepository {
       .select()
       .from(resultsTable)
       .where(eq(resultsTable.userId, userId))
-      .orderBy(desc(resultsTable.date))
+      .orderBy(desc(resultsTable.date));
   }
   static async getDashboard(userId) {
-    return db
+
+    const last10 = await db
       .select({
-        username: usersTable.username,
-        joinDate: usersTable.joinDate,
+        wpm: resultsTable.wpm,
+        accuracy: resultsTable.accuracy,
       })
-      .from(usersTable)
-      .where(eq(usersTable.id, userId));
+      .from(resultsTable)
+      .where(eq(resultsTable.userId, userId))
+      .orderBy(desc(resultsTable.date))
+      .limit(10);
+
+
+    const result = await db
+    .select({
+      username: usersTable.username,
+      joinDate: usersTable.joinDate,
+      completedTests: count(),
+      avgWpm: avg(resultsTable.wpm),
+      avgAccuracy: avg(resultsTable.accuracy),
+      maxWpm: max(resultsTable.wpm),
+      maxAccuracy: max(resultsTable.accuracy),
+      totalChars: sum(resultsTable.correct),
+    })
+    .from(resultsTable)
+    .innerJoin(usersTable, eq(resultsTable.userId, usersTable.id))
+    .where(eq(resultsTable.userId, userId))
+    .groupBy(usersTable.username, usersTable.joinDate);
+
+      result[0].avgWpmLast10 = last10.reduce((sum, result) => sum + result.wpm, 0) / last10.length;
+      result[0].avgAccLast10 = last10.reduce((sum, result) => sum + result.accuracy, 0) / last10.length;
+
+      return result
   }
 }
 

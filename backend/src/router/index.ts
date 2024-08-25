@@ -19,7 +19,6 @@ export const resultsRouter = Router()
 
 resultsRouter.post('/save', restulsController.registerResult)
 resultsRouter.get('/getResults', restulsController.getResultsByUser)
-resultsRouter.get('/getBestResults', restulsController.getBestResultsByUser)
 resultsRouter.get('/getLeaderboard', restulsController.getBestResults)
 resultsRouter.get('/getDashboard', restulsController.getDashboard)
 
