@@ -40,13 +40,13 @@ export default function Dashboard() {
   return (
     <>
       {loading ? (
-        <Circle center={false} />
+        <Circle center={true} />
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.mainCard}>
             <div className={styles.leftSide}>
               <CircleUserRound strokeWidth={2} width={80} height={80} />
-              <span>{data.username || '-'}</span>
+              <span>{data.username ? data.username : '-'}</span>
             </div>
             <div className={styles.rightSide}>
               <div className={styles.statsItem}>

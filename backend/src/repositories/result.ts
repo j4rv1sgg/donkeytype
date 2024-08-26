@@ -7,14 +7,14 @@ class ResultRepository {
   static async registerResult(data) {
     return db.insert(resultsTable).values(data);
   }
-  static async getBestResultByTime({userId, time}) {
+  static async getBestResultByTime({ userId, time }) {
     const res = await db
       .select({
-        wpm: max(resultsTable.wpm)
+        wpm: max(resultsTable.wpm),
       })
       .from(resultsTable)
       .where(and(eq(resultsTable.userId, userId), eq(resultsTable.time, time)));
-      return res[0]
+    return res[0];
   }
   static async getBestResults({ time }) {
     return db
@@ -36,7 +36,6 @@ class ResultRepository {
       .orderBy(desc(resultsTable.date));
   }
   static async getDashboard(userId) {
-
     const last10 = await db
       .select({
         wpm: resultsTable.wpm,
@@ -47,27 +46,24 @@ class ResultRepository {
       .orderBy(desc(resultsTable.date))
       .limit(10);
 
-
     const result = await db
-    .select({
-      username: usersTable.username,
-      joinDate: usersTable.joinDate,
-      completedTests: count(),
-      avgWpm: avg(resultsTable.wpm),
-      avgAccuracy: avg(resultsTable.accuracy),
-      maxWpm: max(resultsTable.wpm),
-      maxAccuracy: max(resultsTable.accuracy),
-      totalChars: sum(resultsTable.correct),
-    })
-    .from(resultsTable)
-    .innerJoin(usersTable, eq(resultsTable.userId, usersTable.id))
-    .where(eq(resultsTable.userId, userId))
-    .groupBy(usersTable.username, usersTable.joinDate);
+      .select({
+        completedTests: count(),
+        avgWpm: avg(resultsTable.wpm),
+        avgAccuracy: avg(resultsTable.accuracy),
+        maxWpm: max(resultsTable.wpm),
+        maxAccuracy: max(resultsTable.accuracy),
+        totalChars: sum(resultsTable.correct),
+      })
+      .from(resultsTable)
+      .where(eq(resultsTable.userId, userId))
 
-      result[0]?.avgWpmLast10 = last10.reduce((sum, result) => sum + result.wpm, 0) / last10.length;
-      result[0]?.avgAccLast10 = last10.reduce((sum, result) => sum + result.accuracy, 0) / last10.length;
+    result[0]?.avgWpmLast10 =
+      last10.reduce((sum, result) => sum + result.wpm, 0) / last10.length;
+    result[0]?.avgAccLast10 =
+      last10.reduce((sum, result) => sum + result.accuracy, 0) / last10.length;
 
-      return result
+    return result;
   }
 }
 

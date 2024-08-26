@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import ResultRepository from '../repositories/result';
+import UserRepository from '../repositories/user';
 class ResultsService {
   static async getBestResultsByUser(userId) {
     const bestOn15 = await ResultRepository.getBestResultByTime({
@@ -23,9 +24,10 @@ class ResultsService {
     return res;
   }
   static async getDashboardByUser(userId) {
+    const userData = await UserRepository.getUserById(userId)
     const res = await ResultRepository.getDashboard(userId);
     const bestOnTime = await this.getBestResultsByUser(userId);
-    return { ...res[0], ...bestOnTime };
+    return { ...res[0], ...bestOnTime, ...userData };
   }
 
   static async getResultsByUser(userId) {
