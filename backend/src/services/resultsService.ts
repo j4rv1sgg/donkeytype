@@ -1,43 +1,39 @@
 //@ts-nocheck
 
-import ResultRepository from "../repositories/result";
-
-function getMaxWPM(data, time) {
-  const filtered = data.filter(result => result.time === time);
-
-  if (filtered.length === 0) {
-      return null;
-  }
-
-  const maxWPM = Math.max(...filtered.map(result => result.wpm));
-
-  return maxWPM;
-}
-
+import ResultRepository from '../repositories/result';
+import UserRepository from '../repositories/user';
 class ResultsService {
-  // static async getResultsByUser(userId) {
-  //   const allResults = await ResultRepository.getResultsById(userId)
-  // }
-  static async getDashboardByUser(userId) {
-    const res = await ResultRepository.getDashboard(userId)
-    return res[0]
-  }
-  static async getResultsByUser(userId) {
-    const res = await ResultRepository.getResults({userId})
-    return res
-  }
-  
   static async getBestResultsByUser(userId) {
-    const allResults = await ResultRepository.getResultsById(userId)
+    const bestOn15 = await ResultRepository.getBestResultByTime({
+      userId,
+      time: 15,
+    });
+    const bestOn30 = await ResultRepository.getBestResultByTime({
+      userId,
+      time: 30,
+    });
+    const bestOn60 = await ResultRepository.getBestResultByTime({
+      userId,
+      time: 60,
+    });
     const res = {
-      15: getMaxWPM(allResults, 15),
-      30: getMaxWPM(allResults, 30),
-      60: getMaxWPM(allResults, 60)
-    }
-    return res
+      bestOn15: bestOn15.wpm,
+      bestOn30: bestOn30.wpm,
+      bestOn60: bestOn60.wpm,
+    };
+    return res;
+  }
+  static async getDashboardByUser(userId) {
+    const userData = await UserRepository.getUserById(userId)
+    const res = await ResultRepository.getDashboard(userId);
+    const bestOnTime = await this.getBestResultsByUser(userId);
+    return { ...res[0], ...bestOnTime, ...userData };
   }
 
-  
+  static async getResultsByUser(userId) {
+    const res = await ResultRepository.getResults({ userId });
+    return res;
+  }
 }
 
 export default ResultsService;

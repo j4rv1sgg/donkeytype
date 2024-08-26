@@ -7,17 +7,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { CircleUserRound } from 'lucide-react';
-import {
-  getBestResults,
-  getDashboard,
-  getResults,
-} from '@/services/resultServices';
+import { getDashboard, getResults } from '@/services/resultServices';
 import Circle from '@/components/Circle';
 import { format } from 'date-fns';
 
 export default function Dashboard() {
   const [data, setData] = useState({});
-  const [newData, setNewData] = useState({});
   const { isUserLogged } = useContext(AuthContext) as { isUserLogged: boolean };
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
@@ -29,11 +24,8 @@ export default function Dashboard() {
       if (!isUserLogged) {
         navigate('/login');
       } else {
-        const res = await getBestResults();
-        setData(res.data);
-
         const response = await getDashboard();
-        setNewData(response);
+        setData(response);
 
         const resultsData = await getResults();
         setResults(resultsData);
@@ -48,30 +40,72 @@ export default function Dashboard() {
   return (
     <>
       {loading ? (
-        <Circle center={false} />
+        <Circle center={true} />
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.mainCard}>
             <div className={styles.leftSide}>
               <CircleUserRound strokeWidth={2} width={80} height={80} />
-              <span>{newData.username || '-'}</span>
-              <p>Joined {newData.joinDate}</p>
+              <span>{data.username ? data.username : '-'}</span>
             </div>
             <div className={styles.rightSide}>
-              <div className={styles.listItem}>
-                <span>15 sec</span>
-                <span>{data[15] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>joined</p>
+                <span>{data.joinDate}</span>
               </div>
-              <div className={styles.listItem}>
-                <span>30 sec</span>
-                <span>{data[30] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>tests completed</p>
+                <span>{data.completedTests}</span>
               </div>
-              <div className={styles.listItem}>
-                <span>60 sec</span>
-                <span>{data[60] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>words typed</p>
+                <span>{Math.floor(data.totalChars / 5)}</span>
               </div>
             </div>
           </div>
+          <div className={styles.bestOnTime}>
+          <p className={styles.label}>personal best</p>
+            <div className={styles.bestItem}>
+              <p>15 seconds</p>
+              <span>{data.bestOn15 || '-'}</span>
+            </div>
+            <div className={styles.bestItem}>
+              <p>30 seconds</p>
+              <span>{data.bestOn30 || '-'}</span>
+            </div>
+            <div className={styles.bestItem}>
+              <p>60 seconds</p>
+              <span>{data.bestOn60 || '-'}</span>
+            </div>
+          </div>
+
+          <div className={styles.gridContainer}>
+            <div className={styles.statsItem}>
+              <p>highest wpm</p>
+              <span>{data.maxWpm || '-'}</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average wpm</p>
+              <span>{Number(data.avgWpm).toFixed(2) || '-'}</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average wpm (last 10 tests)</p>
+              <span>{Number(data.avgWpmLast10).toFixed(2) || '-'}</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>highest accuracy</p>
+              <span>{data.maxAccuracy || '-'}%</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average accuracy</p>
+              <span>{Number(data.avgAccuracy).toFixed(2) || '-'}%</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average accuracy (last 10 tests)</p>
+              <span>{Number(data.avgAccLast10).toFixed(2) || '-'}%</span>
+            </div>
+          </div>
+
           {results.length ? (
             <div className={styles.results}>
               <table className={styles.resultsTable}>
