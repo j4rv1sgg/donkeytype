@@ -1,5 +1,6 @@
 .wrapper {
-  padding: 0 32px
+  padding: 0 32px;
+  margin-top: 110px;
 }
 .container {
   display: flex;

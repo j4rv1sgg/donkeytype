@@ -12,12 +12,12 @@ export default function Login() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div>
-          <p className={styles.formTitle}>Register</p>
-          <RegisterForm />
-        </div>
-        <div>
           <p className={styles.formTitle}>Login</p>
           <LoginForm />
+        </div>
+        <div>
+          <p className={styles.formTitle}>Register</p>
+          <RegisterForm />
         </div>
       </div>
     </div>

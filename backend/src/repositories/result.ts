@@ -64,8 +64,8 @@ class ResultRepository {
     .where(eq(resultsTable.userId, userId))
     .groupBy(usersTable.username, usersTable.joinDate);
 
-      result[0].avgWpmLast10 = last10.reduce((sum, result) => sum + result.wpm, 0) / last10.length;
-      result[0].avgAccLast10 = last10.reduce((sum, result) => sum + result.accuracy, 0) / last10.length;
+      result[0]?.avgWpmLast10 = last10.reduce((sum, result) => sum + result.wpm, 0) / last10.length;
+      result[0]?.avgAccLast10 = last10.reduce((sum, result) => sum + result.accuracy, 0) / last10.length;
 
       return result
   }

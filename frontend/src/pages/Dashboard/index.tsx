@@ -67,31 +67,44 @@ export default function Dashboard() {
           <p className={styles.label}>personal best</p>
             <div className={styles.bestItem}>
               <p>15 seconds</p>
-              <span>{data.bestOn15}</span>
+              <span>{data.bestOn15 || '-'}</span>
             </div>
             <div className={styles.bestItem}>
               <p>30 seconds</p>
-              <span>{data.bestOn30}</span>
+              <span>{data.bestOn30 || '-'}</span>
             </div>
             <div className={styles.bestItem}>
               <p>60 seconds</p>
-              <span>{data.bestOn60}</span>
+              <span>{data.bestOn60 || '-'}</span>
             </div>
           </div>
-          {/* <div className={styles.gridContainer}>
+
+          <div className={styles.gridContainer}>
             <div className={styles.statsItem}>
-              <p>15 sec</p>
-              <span>6062</span>
+              <p>highest wpm</p>
+              <span>{data.maxWpm || '-'}</span>
             </div>
             <div className={styles.statsItem}>
-              <p>Tests Completed</p>
-              <span>1000</span>
+              <p>average wpm</p>
+              <span>{Number(data.avgWpm).toFixed(2) || '-'}</span>
             </div>
             <div className={styles.statsItem}>
-              <p>Time Typing</p>
-              <span>08:29:42</span>
+              <p>average wpm (last 10 tests)</p>
+              <span>{Number(data.avgWpmLast10).toFixed(2) || '-'}</span>
             </div>
-          </div> */}
+            <div className={styles.statsItem}>
+              <p>highest accuracy</p>
+              <span>{data.maxAccuracy || '-'}%</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average accuracy</p>
+              <span>{Number(data.avgAccuracy).toFixed(2) || '-'}%</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>average accuracy (last 10 tests)</p>
+              <span>{Number(data.avgAccLast10).toFixed(2) || '-'}%</span>
+            </div>
+          </div>
 
           {results.length ? (
             <div className={styles.results}>
