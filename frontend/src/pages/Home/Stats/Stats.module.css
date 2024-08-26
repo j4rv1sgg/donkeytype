@@ -1,6 +1,10 @@
 .wrapper{
   width: 100%;
-  color: var(--sub-color)
+  height: 75vh;
+  color: var(--sub-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .results{
   display: grid;
@@ -8,7 +12,6 @@
   grid-template-columns: auto 1fr;
   grid-template-areas: "mainstats chart"
                         "substats substats";
-
 }
 .chart{
   min-width: 200px;
