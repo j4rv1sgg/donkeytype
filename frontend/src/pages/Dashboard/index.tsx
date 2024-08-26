@@ -7,10 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { CircleUserRound } from 'lucide-react';
-import {
-  getDashboard,
-  getResults,
-} from '@/services/resultServices';
+import { getDashboard, getResults } from '@/services/resultServices';
 import Circle from '@/components/Circle';
 import { format } from 'date-fns';
 
@@ -50,23 +47,52 @@ export default function Dashboard() {
             <div className={styles.leftSide}>
               <CircleUserRound strokeWidth={2} width={80} height={80} />
               <span>{data.username || '-'}</span>
-              <p>Joined {data.joinDate}</p> 
             </div>
             <div className={styles.rightSide}>
-              <div className={styles.listItem}>
-                <span>15 sec</span>
-                <span>{data[15] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>joined</p>
+                <span>{data.joinDate}</span>
               </div>
-              <div className={styles.listItem}>
-                <span>30 sec</span>
-                <span>{data[30] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>tests completed</p>
+                <span>{data.completedTests}</span>
               </div>
-              <div className={styles.listItem}>
-                <span>60 sec</span>
-                <span>{data[60] || '-'}</span>
+              <div className={styles.statsItem}>
+                <p>words typed</p>
+                <span>{Math.floor(data.totalChars / 5)}</span>
               </div>
             </div>
           </div>
+          <div className={styles.bestOnTime}>
+          <p className={styles.label}>personal best</p>
+            <div className={styles.bestItem}>
+              <p>15 seconds</p>
+              <span>{data.bestOn15}</span>
+            </div>
+            <div className={styles.bestItem}>
+              <p>30 seconds</p>
+              <span>{data.bestOn30}</span>
+            </div>
+            <div className={styles.bestItem}>
+              <p>60 seconds</p>
+              <span>{data.bestOn60}</span>
+            </div>
+          </div>
+          {/* <div className={styles.gridContainer}>
+            <div className={styles.statsItem}>
+              <p>15 sec</p>
+              <span>6062</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>Tests Completed</p>
+              <span>1000</span>
+            </div>
+            <div className={styles.statsItem}>
+              <p>Time Typing</p>
+              <span>08:29:42</span>
+            </div>
+          </div> */}
+
           {results.length ? (
             <div className={styles.results}>
               <table className={styles.resultsTable}>

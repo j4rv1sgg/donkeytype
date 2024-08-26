@@ -1,52 +1,111 @@
-.wrapper{
+.wrapper {
   max-width: 1280px;
   margin: 0 auto;
 }
-.mainCard{
+.mainCard {
   background-color: var(--sub-alt-color);
   border-radius: 1rem;
   padding: 14px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
+
 }
-.leftSide{
-  width: 40%;
+.leftSide {
+  width: 25%;
   display: flex;
   align-items: center;
   gap: 20px;
 }
-.leftSide span{
+.rightSide {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.leftSide span {
   font-size: 30px;
+  color: var(--text-color);
 }
-.rightSide{
-  width: 40%;
-  font-size: 19px;
-}
-.listItem{
+.listItem {
   display: flex;
   justify-content: space-between;
 }
 
-.resultsTable{
+.resultsTable {
   margin-top: 100px;
 }
-.tableValue{
-  padding: 10px
+.tableValue {
+  padding: 10px;
 }
-.tableHead{
+.tableHead {
   font-size: smaller;
 }
-.tableHead td{
-  padding: 10px
+.tableHead td {
+  padding: 10px;
 }
-.seeMoreButton{
+.seeMoreButton {
   margin: 10px 0;
   font-size: 18px;
   width: 100%;
 }
-.noTestsSign{
+.noTestsSign {
   margin: 50px 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+.statsItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+.statsItem p {
+  color: var(--sub-color);
+  font-size: 0.9rem;
+
+}
+.statsItem span {
+  color: var(--text-color);
+  font-size: 2rem;
+  line-height: 2rem;
+}
+.bestItem {
+  text-align: center;
+}
+.bestItem p {
+  color: var(--sub-color);
+  font-size: 0.9rem;
+}
+.bestItem span {
+  color: var(--text-color);
+  font-size: 2.5rem;
+}
+.label{
+  display: flex;
+  font-size: 1.3rem;
+  align-items: center;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background: var(--sub-alt-color);
+  border-radius: 1rem;
+
+}
+.bestOnTime{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background: var(--sub-alt-color);
+  border-radius: 1rem;
+  padding: 14px;
+}
+
+.gridItem {
+  padding: 15px;
 }
