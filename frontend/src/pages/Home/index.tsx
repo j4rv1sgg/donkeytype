@@ -10,7 +10,6 @@ import Circle from '@/components/Circle';
 import { getWords } from '@/services/wordsServices';
 import { ConfigContext } from '@/context/ConfigContext';
 import { ConfigContextType } from '@/types/Config';
-// import { ThemeContext } from '@/context/ThemeContext';
 
 let wordsData: string[] = [];
 
@@ -28,7 +27,6 @@ export default function Home() {
   const [config] = useContext(ConfigContext) as ConfigContextType;
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
   const [loading, setLoading] = useState(true);
-  // const [theme, updateTheme] = useContext(ThemeContext);
 
   useEffect(() => {
     setLoading(true);
