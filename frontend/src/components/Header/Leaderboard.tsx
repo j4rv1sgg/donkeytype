@@ -42,7 +42,7 @@ export default function Leaderboard() {
       <Crown color="var(--sub-color)" size={23} onClick={togglePopup}>
         Leaderboard
       </Crown>
-      <Popup show={showPopup} onClose={togglePopup}>
+      <Popup show={showPopup} darkBg={true} onClose={togglePopup}>
         <h2>Leaderboard</h2>
         <span className="leaderboardTime">Time:</span>
         <div className="tabTriggers">

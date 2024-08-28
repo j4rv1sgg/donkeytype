@@ -35,7 +35,7 @@ export default function LanguagePopup() {
         />
         {config.words}
       </div>
-      <Popup show={isOpen} onClose={() => setIsOpen(false)}>
+      <Popup show={isOpen} darkBg={true} onClose={() => setIsOpen(false)}>
         <h2>Word set</h2>
         {loading ? (
           <span>loading</span>

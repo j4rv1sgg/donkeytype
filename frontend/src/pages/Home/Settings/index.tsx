@@ -27,7 +27,7 @@ export default function Settnigs() {
        onClick={() => {
         setIsOpen(true);
       }}/>
-      <Popup show={isOpen} onClose={() => setIsOpen(false)}>
+      <Popup show={isOpen} darkBg={true} onClose={() => setIsOpen(false)}>
         <h2>Settings</h2>
         <div className={styles.list}>
           <div className={styles.listItem}>

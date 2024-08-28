@@ -10,7 +10,7 @@ import Circle from '@/components/Circle';
 import { getWords } from '@/services/wordsServices';
 import { ConfigContext } from '@/context/ConfigContext';
 import { ConfigContextType } from '@/types/Config';
-import { ThemeContext } from '@/context/ThemeContext';
+// import { ThemeContext } from '@/context/ThemeContext';
 
 let wordsData: string[] = [];
 
@@ -23,20 +23,19 @@ export default function Home() {
     isAfk: false,
     time: 0,
   });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   /* @ts-expect-error */
-  const [config] = useContext(ConfigContext) as ConfigContextType
+  const [config] = useContext(ConfigContext) as ConfigContextType;
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
   const [loading, setLoading] = useState(true);
-  const [theme] = useContext(ThemeContext)
+  // const [theme, updateTheme] = useContext(ThemeContext);
 
   useEffect(() => {
-    setLoading(true)
-    getWords(config.words)
-      .then((res) => {
-        wordsData = res?.data.words;
-        setLoading(false);
-      })
+    setLoading(true);
+    getWords(config.words).then((res) => {
+      wordsData = res?.data.words;
+      setLoading(false);
+    });
   }, [config.words]);
 
   return (
@@ -53,7 +52,6 @@ export default function Home() {
           )}
         </>
       )}
-      <button onClick={() => {console.log(theme)}}>show</button>
     </div>
   );
 }

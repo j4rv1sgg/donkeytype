@@ -4,7 +4,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +11,9 @@
   cursor: default;
   animation: popupEnter 0.2s ease forwards;
 }
-
+.darkBg {
+  background-color: rgba(0, 0, 0, 0.6);
+}
 
 @keyframes popupEnter {
   from {
