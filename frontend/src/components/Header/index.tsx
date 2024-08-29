@@ -1,5 +1,4 @@
 import styles from './Header.module.css';
-import logo from '@/assets/logo.svg';
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { CircleUserRound } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import Leaderboard from './Leaderboard';
 import ThemePopup from './ThemePopup';
+import Logo from './Logo';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <div className={styles.wrapper}>
       <div onClick={handleLogoClick} className={styles.logoWrapper}>
-        <img src={logo} alt="Logo" className={styles.logo} />
+        <Logo className={styles.logo} />
         <span className={styles.title}>DonkeyType</span>
         <Leaderboard />
         <ThemePopup />

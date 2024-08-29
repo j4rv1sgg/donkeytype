@@ -1,5 +1,6 @@
 .wrapper {
   width: 100%;
+  padding-top: 7px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -7,7 +8,7 @@
   color: var(--sub-color);
 }
 .logo{
-  width: 60px;
+  color: var(--main-color);
 }
 .title{
   font-size: 23px;
