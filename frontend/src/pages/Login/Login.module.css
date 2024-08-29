@@ -1,6 +1,6 @@
 .wrapper {
   padding: 0 32px;
-  margin-top: 110px;
+  margin-top: 160px;
 }
 .container {
   display: flex;
@@ -9,5 +9,6 @@
 }
 .formTitle{
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
 }

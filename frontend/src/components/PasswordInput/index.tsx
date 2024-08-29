@@ -22,9 +22,9 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           className={styles.input}
         />
         {show ? (
-          <EyeIcon size={19} onClick={toggleShow} className={styles.icon} />
+          <EyeIcon size={24} onClick={toggleShow} className={styles.icon} />
         ) : (
-          <EyeOffIcon size={19} onClick={toggleShow} className={styles.icon} />
+          <EyeOffIcon size={24} onClick={toggleShow} className={styles.icon} />
         )}
       </div>
     );

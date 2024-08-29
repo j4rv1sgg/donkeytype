@@ -64,7 +64,7 @@ export default function RegisterForm() {
         </div>
         {isWrong && <p className={styles.error}>Wrong email or password</p>}
 
-        <button>Sign In</button>
+        <button className={styles.button}>Sign In</button>
       </form>
     </>
   );

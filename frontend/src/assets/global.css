@@ -45,12 +45,14 @@ body {
 
 input {
   background-color: var(--sub-alt-color);
-  border: none;
-  height: 30px;
   font-family: inherit;
   color: var(--text-color);
   border-radius: 5px;
-  height: 30px
+  font-size: 1.2rem;
+  height: 2.5rem;
+  width: 267px;
+  border: solid 1px var(--sub-color);
+  padding-left: 5px;
 }
 
 button {
@@ -70,9 +72,8 @@ button:hover {
   background-color: var(--text-color);
 }
 label {
-  font-size: small;
+  font-size: medium;
   display: block;
-  color: var(--sub-color);
 }
 
 .container {

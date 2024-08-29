@@ -1,8 +1,12 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  max-width: 175px;
-
+}
+.formContainer button {
+  width: 170px;
+  height: 40px;
+  font-size: larger;
+  border: solid 1px var(--sub-color);
 }
 .formControl{
   margin-bottom: 10px;
