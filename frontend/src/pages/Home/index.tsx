@@ -22,19 +22,18 @@ export default function Home() {
     isAfk: false,
     time: 0,
   });
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   /* @ts-expect-error */
-  const [config] = useContext(ConfigContext) as ConfigContextType
+  const [config] = useContext(ConfigContext) as ConfigContextType;
   const [status, setStatus] = useContext(StatusContext) as StatusContextType;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
-    getWords(config.words)
-      .then((res) => {
-        wordsData = res?.data.words;
-        setLoading(false);
-      })
+    setLoading(true);
+    getWords(config.words).then((res) => {
+      wordsData = res?.data.words;
+      setLoading(false);
+    });
   }, [config.words]);
 
   return (

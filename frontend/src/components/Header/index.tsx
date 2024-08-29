@@ -8,6 +8,7 @@ import { StatusContextType } from '@/types/Status';
 import { CircleUserRound } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import Leaderboard from './Leaderboard';
+import ThemePopup from './ThemePopup';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function Header() {
         <img src={logo} alt="Logo" className={styles.logo} />
         <span className={styles.title}>DonkeyType</span>
         <Leaderboard />
+        <ThemePopup />
       </div>
       <div className={styles.headerButtons}>
         {isUserLogged ? (
