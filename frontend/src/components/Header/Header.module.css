@@ -9,6 +9,7 @@
 }
 .logo{
   color: var(--main-color);
+  transition: color 0.4s;
 }
 .title{
   font-size: 23px;
