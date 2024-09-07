@@ -9,6 +9,7 @@ const UseConfig = (key: string) => {
   const defaultConfig = {
     time: 15,
     capitals: false,
+    punctuation: false,
     numbers: false,
     liveWPM: false,
     words: 'english'
