@@ -35,7 +35,7 @@ export default function Dashboard() {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const [, setStatus] = useContext(StatusContext) as StatusContextType;
+  const { setStatus } = useContext(StatusContext) as StatusContextType;
   setStatus('waiting');
   return (
     <>
@@ -64,7 +64,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className={styles.bestOnTime}>
-          <p className={styles.label}>personal best</p>
+            <p className={styles.label}>personal best</p>
             <div className={styles.bestItem}>
               <p>15 seconds</p>
               <span>{data.bestOn15 || '-'}</span>

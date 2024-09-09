@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import { Results } from '@/types/Results';
 import Chart from './Chart';
 import styles from './Stats.module.css';
@@ -9,19 +7,21 @@ import { AuthContext } from '@/context/AuthContext';
 import { ConfigContextType } from '@/types/Config';
 import { ConfigContext } from '@/context/ConfigContext';
 import { calcAccuracy } from '@/utils/caltAccuracy';
+import { setStatusType } from '@/types/Status';
 
 interface Props {
   result: Results;
-  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  setStatus: setStatusType;
 }
 
 const Stats: React.FC<Props> = ({ result, setStatus }) => {
   const { isUserLogged } = useContext(AuthContext);
 
-  const [config] = useContext(ConfigContext) as ConfigContextType | null;
+  const configContext = useContext(ConfigContext) as ConfigContextType;
+  const config = configContext.config;
   useEffect(() => {
     let isSended: boolean = false;
-    if (isUserLogged && !isSended) {
+    if (isUserLogged && !isSended && config) {
       const dataToSend = {
         wpm: result.wpm,
         time: result.time,
@@ -32,7 +32,7 @@ const Stats: React.FC<Props> = ({ result, setStatus }) => {
         punctuation: config.punctuation,
         capitals: config.capitals,
         numbers: config.numbers,
-      }
+      };
       saveResult(dataToSend);
       isSended = true;
     }

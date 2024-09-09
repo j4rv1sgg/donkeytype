@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
+
 import { useContext } from 'react';
 import styles from './TypeConfig.module.css';
 import { ConfigContext } from '@/context/ConfigContext';
@@ -11,9 +10,9 @@ type Props = {
 };
 
 export default function TypeConfig({ isVisible }: Props) {
-  const [config, updateConfig] = useContext(
+  const {config, updateConfig} = useContext(
     ConfigContext
-  ) as ConfigContextType | null;
+  ) as ConfigContextType
 
   const timeOptions = [15, 30, 60];
   return (

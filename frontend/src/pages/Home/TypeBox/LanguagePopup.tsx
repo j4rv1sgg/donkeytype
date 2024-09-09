@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-//@ts-nocheck
+
 import { ConfigContext } from '@/context/ConfigContext';
 import { ConfigContextType } from '@/types/Config';
 import { useContext, useEffect, useState } from 'react';
@@ -12,9 +11,9 @@ export default function LanguagePopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [config, updateConfig] = useContext(
+  const {config, updateConfig} = useContext(
     ConfigContext
-  ) as ConfigContextType | null;
+  ) as ConfigContextType;
 
   useEffect(() => {
     getAviableWordSets().then((res) => {

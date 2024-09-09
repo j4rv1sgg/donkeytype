@@ -7,9 +7,9 @@ export interface Config {
   words: string,
 }
 export interface ConfigField {
-  [key: string]: number | string;
+  [key: string]: number | string | boolean;
 }
-export interface ConfigContextType {
+export type ConfigContextType = {
   config: Config, 
   updateConfig: (field: ConfigField) => void
 }

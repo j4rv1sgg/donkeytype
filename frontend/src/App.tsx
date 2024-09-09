@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     <div className="wrapper">
       <ConfigContext.Provider value={{config, updateConfig}}>
-        <StatusContext.Provider value={[status, setStatus]}>
+        <StatusContext.Provider value={{status, setStatus}}>
           <ThemeContext.Provider value={[theme, updateTheme]}>
             <AuthProvider>
               <BrowserRouter>

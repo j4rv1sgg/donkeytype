@@ -119,9 +119,9 @@ type Props = {
 };
 
 const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
-  { /* @ts-expect-error */ }
-  const [config] = useContext(ConfigContext) as ConfigContextType;
-  const [status, setStatus] = useContext(StatusContext) as StatusContextType;
+  const configContext = useContext(ConfigContext) as ConfigContextType;
+  const config = configContext.config 
+  const {status, setStatus} = useContext(StatusContext) as StatusContextType;
 
   const [words, setWords] = useState(generateWordsSet(wordsData, config));
   const wordSpanRefs: WordRefs[] = useMemo(
@@ -252,7 +252,7 @@ const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
     setIsFocused(isFocus);
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const key = e.key;
     const keyCode = e.keyCode;
 
@@ -474,7 +474,6 @@ const TypeBox: React.FC<Props> = ({ wordsData, setResult }) => {
           ref={inputRef}
           type="text"
           className={styles.hiddenInput}
-          // @ts-ignore
           onKeyDown={handleKeyDown}
           value={currInput}
           onFocus={() => handleFocus(true)}

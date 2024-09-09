@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-//@ts-nocheck
 import { useContext, useState } from 'react';
 import Popup from '@/components/PopUp';
 import { Palette } from 'lucide-react';

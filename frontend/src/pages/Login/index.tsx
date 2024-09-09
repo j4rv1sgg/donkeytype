@@ -6,7 +6,7 @@ import { StatusContextType } from '@/types/Status';
 import { useContext } from 'react';
 
 export default function Login() {
-  const [, setStatus] = useContext(StatusContext) as StatusContextType;
+  const {setStatus} = useContext(StatusContext) as StatusContextType;
   setStatus('waiting');
   return (
     <div className={styles.wrapper}>

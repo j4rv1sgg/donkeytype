@@ -12,7 +12,7 @@ import Logo from './Logo';
 
 export default function Header() {
   const navigate = useNavigate();
-  const [, setStatus] = useContext(StatusContext) as StatusContextType;
+  const {setStatus} = useContext(StatusContext) as StatusContextType;
   const { isUserLogged, handleLogOut } = useContext(AuthContext);
   const username = localStorage.getItem('username');
   const handleLogoutClick = () => {

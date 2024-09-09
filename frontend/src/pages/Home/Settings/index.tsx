@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
+
 import { ConfigContext } from '@/context/ConfigContext';
 import { ConfigContextType } from '@/types/Config';
 import { useContext, useState } from 'react';
@@ -10,9 +9,9 @@ import { Settings } from 'lucide-react';
 
 export default function Settnigs() {
   const [isOpen, setIsOpen] = useState(false);
-  const [config, updateConfig] = useContext(
+  const {config, updateConfig} = useContext(
     ConfigContext
-  ) as ConfigContextType | null;
+  ) as ConfigContextType;
   
   const toggleSetting = () => {
     updateConfig({ liveWPM: !config.liveWPM });

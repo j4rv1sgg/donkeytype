@@ -1,4 +1,6 @@
-export type StatusContextType = [
-  string,
-  React.Dispatch<React.SetStateAction<string>>
-];
+export type Status = 'waiting' | 'finished' | 'started';
+export type setStatusType = React.Dispatch<React.SetStateAction<Status>>;
+export type StatusContextType = {
+  status: Status,
+  setStatus: setStatusType
+};
