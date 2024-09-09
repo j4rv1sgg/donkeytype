@@ -1,19 +1,16 @@
-import { ConfigField } from '@/types/Config';
+import { Config, ConfigContextType, ConfigField } from '@/types/Config';
 import { useState } from 'react';
 
-interface Config {
-  [key: string]: number | string;
-}
+export const defaultConfig: Config = {
+  time: 15,
+  capitals: false,
+  punctuation: false,
+  numbers: false,
+  liveWPM: false,
+  words: 'english',
+};
+const UseConfig = (key: string): ConfigContextType => {
 
-const UseConfig = (key: string) => {
-  const defaultConfig = {
-    time: 15,
-    capitals: false,
-    punctuation: false,
-    numbers: false,
-    liveWPM: false,
-    words: 'english'
-  };
 
   const [config, setConfig] = useState<Config>(() => {
     try {
@@ -36,7 +33,7 @@ const UseConfig = (key: string) => {
     window.localStorage.setItem(key, JSON.stringify(data));
   };
 
-  return [config, updateConfig];
+  return {config, updateConfig};
 };
 
 export default UseConfig;

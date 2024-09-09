@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState } from 'react';
 import { ConfigContext } from './context/ConfigContext';
 import UseConfig from './hooks/UseConfig';
@@ -11,22 +10,16 @@ import Login from './pages/Login';
 import AuthProvider from './context/AuthContext';
 import Dashboard from './pages/Dashboard';
 import useTheme from './hooks/UseTheme';
+import { Status } from './types/Status';
 
 const App: React.FC = () => {
-  const [config, updateConfig] = UseConfig('config');
-  const [status, setStatus] = useState('waiting');
+  const {config, updateConfig} = UseConfig('config');
+  const [status, setStatus] = useState<Status>('waiting');
   const [theme, updateTheme] = useTheme();
 
-  // useLayoutEffect(() => {
-  //   const color = localStorage.getItem('color');
-  //   if(color){
-  //     document.documentElement.style.setProperty('--bg-color', color);
-  //   }
-  // }, []);
   return (
     <div className="wrapper">
-      {/* @ts-expect-error */}
-      <ConfigContext.Provider value={[config, updateConfig]}>
+      <ConfigContext.Provider value={{config, updateConfig}}>
         <StatusContext.Provider value={[status, setStatus]}>
           <ThemeContext.Provider value={[theme, updateTheme]}>
             <AuthProvider>
