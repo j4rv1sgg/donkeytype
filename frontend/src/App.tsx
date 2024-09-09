@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
-import { ConfigContext } from './context/ConfigContext';
-import UseConfig from './hooks/UseConfig';
-import { ThemeContext } from './context/ThemeContext';
-import { StatusContext } from './context/StatusContext';
+import React from 'react';
+import ConfigContextProvider from './context/ConfigContext';
+import ThemeContextProvider from './context/ThemeContext';
+import StatusContextProvider from './context/StatusContext';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import AuthProvider from './context/AuthContext';
 import Dashboard from './pages/Dashboard';
-import useTheme from './hooks/UseTheme';
-import { Status } from './types/Status';
 
 const App: React.FC = () => {
-  const {config, updateConfig} = UseConfig('config');
-  const [status, setStatus] = useState<Status>('waiting');
-  const [theme, updateTheme] = useTheme();
-
   return (
     <div className="wrapper">
-      <ConfigContext.Provider value={{config, updateConfig}}>
-        <StatusContext.Provider value={{status, setStatus}}>
-          <ThemeContext.Provider value={[theme, updateTheme]}>
+      <ConfigContextProvider>
+        <StatusContextProvider>
+          <ThemeContextProvider>
             <AuthProvider>
               <BrowserRouter>
                 <Routes>
@@ -33,9 +26,9 @@ const App: React.FC = () => {
                 </Routes>
               </BrowserRouter>
             </AuthProvider>
-          </ThemeContext.Provider>
-        </StatusContext.Provider>
-      </ConfigContext.Provider>
+          </ThemeContextProvider>
+        </StatusContextProvider>
+      </ConfigContextProvider>
     </div>
   );
 };
